@@ -1,9 +1,9 @@
 .specular-button {
   --sb-radius: 18px;
-  --sb-tint: #ffffff;
-  --sb-tint-opacity: 0.04;
+  --sb-tint: var(--sb-dark-tint, #ffffff);
+  --sb-tint-opacity: var(--sb-dark-tint-opacity, 0.04);
   --sb-blur: 0px;
-  --sb-text-color: #f5f5f5;
+  --sb-text-color: var(--sb-dark-text-color, #f5f5f5);
 
   position: relative;
   isolation: isolate;
@@ -27,6 +27,12 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root:not(.dark) .specular-button {
+  --sb-tint: var(--sb-light-tint, #e8f1ff);
+  --sb-tint-opacity: var(--sb-light-tint-opacity, 0.9);
+  --sb-text-color: var(--sb-light-text-color, #173b70);
 }
 
 .specular-button:active {

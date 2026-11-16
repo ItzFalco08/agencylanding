@@ -32,9 +32,14 @@ const Hero = () => {
               radius={18}
               tint="#ffffff"
               tintOpacity={0.04}
+              lightTint="#e8f1ff"
+              lightTintOpacity={0.9}
               textColor="#f5f5f5"
+              lightTextColor="#173b70"
               lineColor="#ffffff"
+              lightLineColor="#3884ff"
               baseColor="#525252"
+              lightBaseColor="#3884ff"
               intensity={1}
               idleIntensity={0.35}
               shineSize={10}

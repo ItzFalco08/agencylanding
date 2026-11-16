@@ -172,10 +172,15 @@ const SpecularButton = ({
   radius = 18,
   tint = '#ffffff',
   tintOpacity = 0.04,
+  lightTint = '#e8f1ff',
+  lightTintOpacity = 0.9,
   blur = 0,
   textColor = '#f5f5f5',
+  lightTextColor = '#173b70',
   lineColor = '#ffffff',
+  lightLineColor = '#3884ff',
   baseColor = '#525252',
+  lightBaseColor = '#3884ff',
   intensity = 1,
   idleIntensity = 0.35,
   shineSize = 10,
@@ -199,7 +204,9 @@ const SpecularButton = ({
   const settings = {
     radius: Math.max(0, radius),
     lineColor: String(lineColor),
+    lightLineColor: String(lightLineColor),
     baseColor: String(baseColor),
+    lightBaseColor: String(lightBaseColor),
     intensity: Math.max(0, intensity),
     idleIntensity: clamp(idleIntensity, 0, 1),
     shineSize: Math.max(0, shineSize),
@@ -307,8 +314,9 @@ const SpecularButton = ({
       const pull = 1 - Math.min(0.35 * (height / 2), Math.hypot(rimX, rimY)) / Math.max(Math.hypot(rimX, rimY), 0.0001);
       gl.uniform1f(uniforms.uSpot, state.spot);
       gl.uniform2f(uniforms.uEntry, rimX * pull * scaleX, rimY * pull * scaleY);
-      gl.uniform3fv(uniforms.uLineColor, toRgb(s.lineColor));
-      gl.uniform3fv(uniforms.uBaseColor, toRgb(s.baseColor));
+      const isDarkTheme = document.documentElement.classList.contains('dark');
+      gl.uniform3fv(uniforms.uLineColor, toRgb(isDarkTheme ? s.lineColor : s.lightLineColor));
+      gl.uniform3fv(uniforms.uBaseColor, toRgb(isDarkTheme ? s.baseColor : s.lightBaseColor));
       gl.uniform1f(uniforms.uIntensity, s.intensity * (state.level + state.press * 0.8));
       gl.uniform2f(uniforms.uWindow, s.shineSize / 360 + state.press * 0.06, s.shineFade / 360 + 0.0001);
       gl.uniform1f(uniforms.uThickness, s.thickness);
@@ -351,6 +359,9 @@ const SpecularButton = ({
     const wake = () => {
       if (!raf && visible) raf = requestAnimationFrame(frame);
     };
+
+    const themeObserver = new MutationObserver(wake);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     const measure = entry => {
       const box = entry?.borderBoxSize?.[0];
@@ -412,6 +423,7 @@ const SpecularButton = ({
       wakeRef.current = null;
       resizeObserver.disconnect();
       intersection.disconnect();
+      themeObserver.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerEnd);
       window.removeEventListener('pointercancel', onPointerEnd);
@@ -438,10 +450,13 @@ const SpecularButton = ({
       className={`specular-button specular-button--${size}${className ? ` ${className}` : ''}`}
       style={{
         '--sb-radius': `${radius}px`,
-        '--sb-tint': tint,
-        '--sb-tint-opacity': tintOpacity,
+        '--sb-dark-tint': tint,
+        '--sb-dark-tint-opacity': tintOpacity,
+        '--sb-dark-text-color': textColor,
+        '--sb-light-tint': lightTint,
+        '--sb-light-tint-opacity': lightTintOpacity,
+        '--sb-light-text-color': lightTextColor,
         '--sb-blur': `${blur}px`,
-        '--sb-text-color': textColor,
         ...style
       }}
       {...rest}
