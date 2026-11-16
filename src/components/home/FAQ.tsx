@@ -35,9 +35,9 @@ const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section-container grid gap-8 md:grid-cols-[1fr_2fr]">
+    <section id="faq" className="section-container pt-12! grid gap-8 md:grid-cols-[1fr_2fr]">
       <header className="flex flex-col items-start gap-1">
-        <span className="text-sm font-medium text-muted-foreground">FAQ</span>
+        <span className="text-sm font-medium text-muted-foreground tracking-widest">FAQ</span>
         <h2 className="text-3xl font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Got <span className="font-serif font-normal italic">questions?</span>
         </h2>
