@@ -41,12 +41,12 @@ export default function Navbar() {
       aria-label="Main navigation"
       animate={{ width: isScrolled ? 'min(60rem, calc(100vw - 1.5rem))' : 'min(48rem, calc(100vw - 1.5rem))' }}
       transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-      className="fixed left-1/2 top-3 z-50 flex -translate-x-1/2 items-center justify-between rounded-full bg-(--glass-bg) p-1.5 shadow-(--glass-shadow) backdrop-blur-xl md:grid md:grid-cols-[1fr_auto] md:gap-3"
+      className="fixed left-1/2 top-3 z-50 flex -translate-x-1/2 items-center justify-between rounded-full bg-(--glass-bg) p-1.5 shadow-(--glass-shadow) backdrop-blur-xs md:grid md:grid-cols-[1fr_auto] md:gap-3"
       style={{ borderRadius: '9999px', transformOrigin: '50% 50% 0px' }}
     >
       <div className="pointer-events-auto flex min-w-0 items-center">
         <a aria-label="Origino home" className="group flex h-11 shrink-0 items-center gap-1 rounded-full px-2 md:px-4" href="/">
-          <span className="text-sm font-normal text-foreground md:text-2xl font-(family-name:--font-instrument-serif)">
+          <span className="text-xl font-normal text-foreground md:text-2xl font-(family-name:--font-instrument-serif)">
             <span className="text-primary font-semibold">O</span>
             <span className='italic'>rigino</span>
           </span>
@@ -61,7 +61,7 @@ export default function Navbar() {
               aria-current={activeTab === label ? 'page' : undefined}
               className={`isolate relative rounded-full px-4 py-2 text-sm text-foreground transition-colors hover:bg-accent ${activeTab === label ? 'font-medium' : 'text-foreground/65 hover:text-foreground'}`}
             >
-              {activeTab === label && <motion.span layoutId="navbar-active-tab" className="absolute inset-0 z-0 rounded-full bg-accent" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />}
+              {activeTab === label && <motion.span layoutId="navbar-active-tab" className="absolute inset-0 z-0 rounded-full bg-accent shadow-(--glass-shadow)" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />}
               <span className="relative z-10">{label}</span>
             </a>
           ))}
@@ -95,7 +95,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.16, ease: 'easeOut' }}
-            className="absolute left-0 right-0 top-[calc(100%+0.65rem)] rounded-3xl bg-(--glass-bg) p-2 shadow-(--glass-shadow) backdrop-blur-xl md:hidden"
+            className="absolute left-0 right-0 top-[calc(100%+0.65rem)] rounded-3xl bg-(--glass-bg) p-2 shadow-(--glass-shadow) backdrop-blur-sm md:hidden"
           >
             <div className="flex flex-col gap-1">
               {tabs.map(({ label, href }) => (
