@@ -118,7 +118,7 @@ const Footer = () => {
       </div>
       
       <VariableFontCursorProximity
-        className="z-1 select-none whitespace-nowrap bg-linear-to-b from-background from-30% bg-clip-text text-[clamp(5rem,25vw,8rem)] leading-tight! tracking-tight text-transparent sm:text-[16rem] md:text-[18rem] lg:text-[25rem] font-(family-name:--font-instrument-serif) to-foreground/20 to-100%"
+        className="z-1 select-none whitespace-nowrap bg-linear-to-b from-background from-30% bg-clip-text leading-tight! tracking-tight text-transparent text-[8rem] sm:text-[16rem] md:text-[18rem] lg:text-[25rem] font-(family-name:--font-instrument-serif) to-foreground/20 to-100%"
         containerRef={containerRef}
         fromFontVariationSettings="'wght' 400"
         radius={500}
