@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif, Lora } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,7 +13,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-const instrumentSerif = Instrument_Serif({ variable: "--font-instrument-serif", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
+
+const instrumentSerif = localFont({
+  src: "../fonts/InstrumentsSerif[wght].ttf",
+  variable: "--font-instrument-serif",
+  weight: "400 900",
+  style: "normal",
+  display: "swap",
+});
+
 const lora = Lora({ variable: "--font-serif", subsets: ["latin"] });
 
 export const metadata: Metadata = {
